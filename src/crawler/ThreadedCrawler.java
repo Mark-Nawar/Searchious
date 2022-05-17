@@ -182,10 +182,28 @@ public class ThreadedCrawler extends Thread{
                         store.add(blockDirectory);
                     }
                 }
+                blocked.put(thisHost , store);
             }catch (IOException e){System.out.println("Failed to read Robot.txt");};
         }catch(Exception e){ System.out.println("Failed to retrieve Robot.txt");}
 
     }
+    Boolean CheckIfInRobot(String currentUrl) throws MalformedURLException{
+        URL thisUrl = new URL(currentUrl);
+        String thisHost = thisUrl.getHost();
+        List<String> store = new ArrayList<String>();
+        store = blocked.get(thisHost);
+        for(int i = 0 ; i<store.size() ; i++){
+            if(currentUrl.contains(store.get(i)))
+                return true;
+        }
+        return false;
+    }
 
+    public static void end(){
+        try{
+            WriterB.close();
+            WriterA.close();
+        }catch (IOException e){System.out.println("ending thread failed");}
+    }
 
 }
