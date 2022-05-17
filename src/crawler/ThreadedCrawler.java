@@ -156,4 +156,36 @@ public class ThreadedCrawler extends Thread{
         }
     }
 
+    void GetRobotFile(String curretUrl) throws MalformedURLException{
+        // used this refrence to parse Robot.txt
+        //https://stackoverflow.com/questions/19332982/parsing-robot-txt-using-java-and-identify-whether-an-url-is-allowed
+
+        try{
+            if( curretUrl == null)
+                return;
+            URL thisURL = new URL(curretUrl);
+            // get the host if already there return
+            String thisHost = thisURL.getHost();
+            if(!hosts.contains(thisHost))
+                hosts.add(thisHost);
+            else
+                return;
+            String protocol = thisURL.getProtocol();
+            String Directory = protocol+"://"+thisHost+"/robots.txt";
+            List<String> store = new ArrayList<String>();
+            try( BufferedReader reader = new BufferedReader(new InputStreamReader(new URL(Directory).openStream()))){
+                String currentLine = null;
+                while((currentLine = reader.readLine()) != null){
+                    String destination = currentLine.substring(0, Math.min(currentLine.length(),8));
+                    if(destination.equals("Disallow")){
+                        String blockDirectory = protocol+"://"+thisHost+currentLine.substring(10,currentLine.length());
+                        store.add(blockDirectory);
+                    }
+                }
+            }catch (IOException e){System.out.println("Failed to read Robot.txt");};
+        }catch(Exception e){ System.out.println("Failed to retrieve Robot.txt");}
+
+    }
+
+
 }
