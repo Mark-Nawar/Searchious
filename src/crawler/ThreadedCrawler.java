@@ -199,6 +199,17 @@ public class ThreadedCrawler extends Thread{
         return false;
     }
 
+    public static void SAVEHTMLDOCS(String currentUrl , int currentDocNumber){
+        try{
+            File newHtmlDoc = new File("FileNo_"+currentDocNumber+".html");
+            newHtmlDoc.createNewFile();
+            // add the content of the HTML File
+            FileWriter htmlCreator = new FileWriter(newHtmlDoc);
+            htmlCreator.write(Jsoup.connect(currentUrl).get().html());
+            htmlCreator.close();
+        }catch (Exception e){System.out.println("Failed to save HTML Doc");}
+    }
+
     public static void end(){
         try{
             WriterB.close();
