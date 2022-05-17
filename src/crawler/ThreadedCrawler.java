@@ -4,8 +4,6 @@ package crawler;
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.nio.Buffer;
-import java.sql.*;
 import java.util.*;
 import java.util.Scanner;
 import org.jsoup.Jsoup;
@@ -183,7 +181,7 @@ public class ThreadedCrawler extends Thread{
                     }
                 }
                 blocked.put(thisHost , store);
-            }catch (IOException e){System.out.println("Failed to read Robot.txt");};
+            }catch (IOException e){System.out.println("Failed to read Robot.txt");}
         }catch(Exception e){ System.out.println("Failed to retrieve Robot.txt");}
 
     }
@@ -192,8 +190,8 @@ public class ThreadedCrawler extends Thread{
         String thisHost = thisUrl.getHost();
         List<String> store = new ArrayList<String>();
         store = blocked.get(thisHost);
-        for(int i = 0 ; i<store.size() ; i++){
-            if(currentUrl.contains(store.get(i)))
+        for (String s : store) {
+            if (currentUrl.contains(s))
                 return true;
         }
         return false;
