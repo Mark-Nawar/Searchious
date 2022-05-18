@@ -199,7 +199,7 @@ public class ThreadedCrawler extends Thread{
 
     public static void SAVEHTMLDOCS(String currentUrl , int currentDocNumber){
         try{
-            File newHtmlDoc = new File("FileNo_"+currentDocNumber+".html");
+            File newHtmlDoc = new File("HTMLDOCS/"+currentDocNumber+".html");
             newHtmlDoc.createNewFile();
             // add the content of the HTML File
             FileWriter htmlCreator = new FileWriter(newHtmlDoc);
