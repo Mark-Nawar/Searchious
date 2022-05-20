@@ -1,0 +1,23 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "search engine back end",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "marknawar",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "ejs": "^3.1.5",
+    "express": "^4.18.1",
+    "jquery": "^3.5.1",
+    "jsdom": "^16.4.0",
+    "mongodb": "^2.2.33",
+    "mongoose": "^6.3.3",
+    "morgan": "^1.10.0",
+    "mysql": "^2.18.1",
+    "porter-stemmer": "^0.9.1"
+  }
+}
