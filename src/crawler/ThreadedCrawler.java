@@ -13,7 +13,7 @@ import org.jsoup.select.Elements;
 
 public class ThreadedCrawler extends Thread{
 
-    public final int MAX = 5000;
+    public final int MAX = 1000;
     // reserve crawling data structures
     public static HashSet<String> links;
     public static HashSet<String> disallow;
@@ -109,6 +109,7 @@ public class ThreadedCrawler extends Thread{
                         catch (Exception e){System.out.println("Checking against robot.txt failed");}
 
                         // add the link to the links hash
+                        System.out.println(currentURL);
                         links.add(currentURL);
                         try{
                             WriterA.write(currentURL+"\n");
