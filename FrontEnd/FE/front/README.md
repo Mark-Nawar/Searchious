@@ -1,11 +1,3 @@
-# Google Clone
-
-Google Clone created in React JS for studying purposes.
-
-## Demo
-
-[Demo Link](https://clone-fcfec.web.app/)
-
 
 ![Image of Website](https://github.com/walissoncom/google-clone/blob/master/google-demo.gif)
 
